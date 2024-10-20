@@ -9,7 +9,6 @@
 
 enum states
 {
-//s_Initialize,
 s_Change,
 s_NoChange,
 s_Read
@@ -26,7 +25,6 @@ int read_loop=0;
 
 void setup()
 {
-   // state = s_Initialize;
 state = s_Read;
    delay(10000);
    printf("waking up\n");
@@ -69,9 +67,7 @@ void loop()
         state=s_Change;
       }
       pin_value[read_loop] = read_pin;
-      // printf("  %d  ",pin_value[read_loop]); ///shoulnt be here
     }
-    // printf("\n");// shouldnt be here    
     break;  
   
   case s_Change:
