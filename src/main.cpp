@@ -78,7 +78,7 @@ void loop()
     state = s_Read;
     break;
   case s_NoChange:
-    printf("\n");
+    printf("\n");  // should be \r
     
     state = s_Read;
     break;
