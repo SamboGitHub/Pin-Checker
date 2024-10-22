@@ -35,7 +35,7 @@ state = s_Read;
   {
   pinMode(read_loop, INPUT);
 
-  printf("%d  ",read_loop % 10); // write last digit 
+  // printf("%d  ",read_loop % 10); // write last digit 
   pin_value[read_loop]=0;
   // digitalWrite(read_loop, HIGH);  // Pull High Restance 
   }
@@ -72,10 +72,17 @@ void loop()
   
   case s_Change:
     printf("%ld  ",millis());
-    for(read_loop=0;(read_loop<num_pins+1);read_loop++)
-    {
+
+    for (read_loop=0 ; (read_loop<num_pins+1) ; read_loop++ )
+      {
+        printf("%d  ",read_loop % 10); // write last digit 
+      }
+      printf("\n");
+      printf("%ld  ",millis());
+      for(read_loop=0;(read_loop<num_pins+1);read_loop++)
+      {
         printf("%d  ",pin_value[read_loop]);
-    }
+      }
     printf("\n");
     
     state = s_Read;
