@@ -21,7 +21,7 @@ int pin_value[num_pins+1];
 int read_pin;
 int current_pin_value;
 int read_loop=0;
-
+boolean repeat_header = false;
 
 void setup()
 {
@@ -41,6 +41,13 @@ state = s_Read;
   }
    printf("\n");
 
+  // print header 
+    printf("%ld  ",millis());
+    for (read_loop=0 ; (read_loop<num_pins+1) ; read_loop++ )
+      {
+        printf("%d  ",read_loop % 10); // write last digit 
+      }
+    printf("\n");
 }
 
 void loop()
@@ -53,6 +60,8 @@ void loop()
     read_pin= 0;
     current_pin_value=0;
 
+
+    // get pin values
     for(read_loop=0;(read_loop<num_pins+1);read_loop++)
     {
       read_pin = digitalRead(read_loop);
@@ -71,13 +80,17 @@ void loop()
     break;  
   
   case s_Change:
-    printf("%ld  ",millis());
 
-    for (read_loop=0 ; (read_loop<num_pins+1) ; read_loop++ )
-      {
-        printf("%d  ",read_loop % 10); // write last digit 
-      }
+    if (repeat_header)
+    {    
+      printf("%ld  ",millis());
+      for (read_loop=0 ; (read_loop<num_pins+1) ; read_loop++ )
+        {
+          printf("%d  ",read_loop % 10); // write last digit 
+        }
       printf("\n");
+    }
+
       printf("%ld  ",millis());
       for(read_loop=0;(read_loop<num_pins+1);read_loop++)
       {
